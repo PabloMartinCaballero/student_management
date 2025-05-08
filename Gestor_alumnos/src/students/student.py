@@ -8,31 +8,24 @@ class Student:
     
     
     #Atributos de instancia
-    def __init__(self,name:str,last_name:str,course:str,behavior:str, punctuality:str, nee:str, type_nee:str = None): #Constructor
+    def __init__(self,name:str,last_name:str,dni:str,home_address:str,course:str,behavior:str, punctuality:str, nee:str, type_nee:str = None): #Constructor
         self.name: str = name
         self.last_name: str = last_name
+        self.__dni: str = dni
+        self.__home_adress: str = home_address
         self.course: str = course
         self.behavior: str = behavior
         self.punctuality: str = punctuality
         self.nee : str = nee
+        #Atributos protejidos 
+
+
         #Incremento en 1 el atributo de clase
         Student.students_numbers += 1
         #Lo asigno a un atributo de instancia
         self.student_number = Student.students_numbers
 
-        #Condicion para saber si el alumno tiene NEE (alumnos con Necesidades Educativas Específicas) 
-        #Verificamos si type_nee sigue siendo None  
-          
-        """         
-                    Codigo con error :
-                    Para acceder al valor del atributo de la instancia, debo usar self.nee
-
-                    if nee.lower() == 'si':
-                        self.type_nee:str = type_nee
-                    else:
-                        self.type_NEE:str = 'No posee ningun NEE'
-
-        """
+    
         if self.nee == 'si':
             # verifico si el usuario cargo la discapacidad, si el usuario
             # cargo que el alumno si posee, verifica que este especifico cual es
@@ -48,8 +41,7 @@ class Student:
             self.type_nee: str = 'No posee ningún NEE'                            
                                      
 
-    
-    #Metodo para mostrar los datos del estudiante
+    #Metodo para mostrar los datos del estudiante,
     def show_information(self) -> str:
         print ("Datos del alumno")
         print(f"Nombre : {self.name}")
@@ -63,4 +55,7 @@ class Student:
         else:
             print("No posee NEE")
 
-    
+    #Metodo para mostrar los datos privados del estudiante.
+    def show_private_information(self) -> str:
+        print(f"dni del alumno : {self.__dni}")
+        print(f"dirección del alumno : {self.__home_adress}")

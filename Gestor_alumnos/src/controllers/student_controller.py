@@ -20,7 +20,21 @@ def create_student() -> object:
     new_student = Student(name,last_name,dni,home_adress,course,behavior,punctuality,nee,type_nee)
     return new_student
 
+                #Objeto   #Lista
+def add_student(student, db_students):
+    #Guardo el atributo course en una variable
+    student_course = student.course
+
+    for course_dict in db_students:
+        for division, students in course_dict.items():
+            if division == student_course:
+                students.append(Student)  # Agregamos el objeto student a la DB
+                return True  # Indicamos que se agregó el estudiante
+    print(f"No se encontró la división")
+    return False
+                
+                
 
 
-def add_student (student):
+
     

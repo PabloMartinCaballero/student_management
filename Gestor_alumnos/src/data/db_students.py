@@ -1,4 +1,5 @@
 students_list: list[dict] = [
+    #Agregar metodo para cargar mas cursos a la DB
     {"1°1°": []},
     {"1°2°": []},
     {"2°": []},
@@ -8,10 +9,7 @@ students_list: list[dict] = [
     {"6°": []},
 ]
 
-# Función para saber si existe el curso y retornar la lista de estudiantes si hay.
-# Aplicación del patron Guard Clausule.
-
-course_number = input('Elija un curso : ')
+course_number = input('Elija un curso :')
 
 def check_db(course_number: str) -> list:
     for course_dict in students_list:

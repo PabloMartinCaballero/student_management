@@ -5,8 +5,6 @@ from src.students.student import Student
 
 #* Aplicación de CRUD para manejar la DB 
 
-
-
 #*----------------------------------------------------------------------------------------------------------
 #* Función para crear un estudiante a partir de la clase Student
 
@@ -21,13 +19,11 @@ def create_student() -> object:
     punctuality: str = ""
     nee: str = input ("¿El alumno posee algun NEE?, ingrese si o no")
     type_nee: str = input ("Ingrese el tipo de nee que posee")
-
     #Creo el nuevo estudiante para luego retornarlo
     new_student = Student(name,last_name,dni,home_adress,course,behavior,punctuality,nee,type_nee)
     return new_student
 
 #*-----------------------------------------------------------------------------------------------------------
-
 #**  Añadir estudiante
         #Objeto = estudiante   #Lista
 def add_student(student, db_students):
@@ -45,7 +41,7 @@ def add_student(student, db_students):
 #*-------------------------------------------------------------------------------------------------------------
 
 #**  Eliminar estudiante                
-def delete(course_number: str) -> bool:
+def delete_student(course_number: str) -> bool:
     for course_dict in students_list:
         for key, value in course_dict.items():
             if key == course_number:
@@ -70,7 +66,7 @@ def delete(course_number: str) -> bool:
 #*-----------------------------------------------------------------------------------------------------------------
 #* Modificar alumno
 
-def check_db(course_number: str) -> list:
+def modify_student(course_number: str) -> list:
     for course_dict in students_list: #Itero en todos los diccionarios dentro de la lista [{dic1}, {dic2}, {dic2}]
         for key, value in course_dict.items(): # {"1°1°": [objeto_estudiante1, objeto_estudiante2]} key = 1°1° value = [objeto_estudiante1, objeto estudiante2]
             # print(f"Valor de la clave: {key}")
@@ -115,3 +111,17 @@ def check_db(course_number: str) -> list:
 
     print("El curso no se encontro")
     return None  # Retornamos None si el curso no se encuentra
+
+#Función para mostrar todos los estudiantes en la lista 
+def show_students(students_list: list[dict]):
+  for course_dict in students_list:
+    for course, students in course_dict.items():
+      print(f"Curso: {course}")
+      if students:
+        for student in students:
+          student.show_information()
+          student.show_private_information()
+          print("-------------------------------------------")
+      else:
+        print("No hay alumnos en este curso.")
+  print("----------------------------------------")

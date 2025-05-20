@@ -1,43 +1,59 @@
 from typing import Optional
 #Importo la DB y su controlador para realizar los controles utilizo un path absoluto para traerla
-from src.data.db_students import students_list, check_db
+from src.data.db_students import students_list,check_db
 from src.students.student import Student
 
 #* Aplicación de CRUD para manejar la DB 
-
 #*----------------------------------------------------------------------------------------------------------
 #* Función para crear un estudiante a partir de la clase Student
 
-def create_student() -> object:
- #Creo las variables que seran agregadas a la función que creara los objetos
-    name:str = input("ingrese el nombre del alumno : ")
-    last_name:str = input("ingrese el apellido del alumno : ") 
-    dni: str = input("Ingrese el DNI del alumno : ")
-    home_adress: str = input("Ingrese la dirección del alumno")
-    course: str = input("Ingrese el curso del alumno")
-    behavior: str = input("Ingrese la dirección del alumno")
-    punctuality: str = ""
-    nee: str = input ("¿El alumno posee algun NEE?, ingrese si o no")
-    type_nee: str = input ("Ingrese el tipo de nee que posee")
-    #Creo el nuevo estudiante para luego retornarlo
-    new_student = Student(name,last_name,dni,home_adress,course,behavior,punctuality,nee,type_nee)
+
+
+def create_student() -> Student:
+    name: str = input("Ingrese el nombre del alumno: ")
+    last_name: str = input("Ingrese el apellido del alumno: ") 
+    dni: str = input("Ingrese el DNI del alumno: ")
+    home_address: str = input("Ingrese la dirección del alumno: ")
+
+    # Validar que el curso exista usando check_db
+    while True:
+        course: str = input("Ingrese el curso del alumno (ej: 3A): ")
+        existing_students = check_db(course)
+        if existing_students is not None:  
+            break
+        else:
+            print("El curso ingresado no existe. Por favor, intente nuevamente.")
+
+    behavior: str = input("Ingrese el comportamiento del alumno: ")
+    punctuality: str = input("Ingrese la puntualidad del alumno: ")
+    nee: str = input("¿El alumno posee algún NEE? (si o no): ").lower() # Paso a minuscula la entrada
+
+    if nee == 'si':
+        type_nee: str = input("Ingrese el tipo de NEE que posee: ")
+    else:
+        type_nee = None
+
+    new_student = Student(
+        name, last_name, dni, home_address, course,
+        behavior, punctuality, nee, type_nee
+    )
+
     return new_student
 
 #*-----------------------------------------------------------------------------------------------------------
 #**  Añadir estudiante
         #Objeto = estudiante   #Lista
 def add_student(student, db_students):
-    #Guardo el atributo course en una variable
     student_course = student.course
     for course_dict in db_students:
         for division, students in course_dict.items():
             if division == student_course:
-                students.append(Student)  # Agregamos el objeto student a la DB
-                return True  # Indicamos que se agregó el estudiante
-    print(f"No se encontró la división")
+                students.append(student)
+                print(f"Alumno agregado correctamente al curso {division}.")
+                return True
+    print(f"No se encontró la división '{student_course}'. No se pudo agregar al alumno.")
     return False
                 
-
 #*-------------------------------------------------------------------------------------------------------------
 
 #**  Eliminar estudiante                

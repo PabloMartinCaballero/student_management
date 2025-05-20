@@ -6,25 +6,21 @@ class Student:
     #Variable de clase que se incrementara cada vez que instancie un objeto estudiante, asignando al mismo su numero
     students_numbers = 0
     
-    
     #Atributos de instancia
-    def __init__(self,name:str,last_name:str,dni:str,home_address:str,course:str,behavior:str, punctuality:str, nee:str, type_nee:str = None): #Constructor
+    def __init__(self,name:str,last_name:str,dni:str,home_adress:str,course:str,behavior:str, punctuality:str, nee:str, type_nee:str = None): #Constructor
         self.name: str = name
         self.last_name: str = last_name
         self.__dni: str = dni
-        self.__home_adress: str = home_address
+        self.__home_adress: str = home_adress
         self.course: str = course
         self.behavior: str = behavior
         self.punctuality: str = punctuality
         self.nee : str = nee
         #Atributos protejidos 
-
-
         #Incremento en 1 el atributo de clase
         Student.students_numbers += 1
         #Lo asigno a un atributo de instancia
         self.student_number = Student.students_numbers
-
     
         if self.nee == 'si':
             # verifico si el usuario cargo la discapacidad, si el usuario

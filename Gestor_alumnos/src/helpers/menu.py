@@ -10,7 +10,6 @@ def clear_console():
 
 
 def show_menu():
-        
         cprint('🧑‍🎓  Bienvenido al gestor de alumnos 🧑‍🎓', 'blue', attrs=['bold'])
         cprint('1. Ver Cursos ', 'blue')
         cprint('2. Consultar/Editar Calificaciones y estadisticas', 'blue')

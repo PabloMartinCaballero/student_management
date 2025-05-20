@@ -14,7 +14,7 @@ def run():
                 print('Opción 2 seleccionada')
                 course: str = input('Ingrese el curso')
                 modify_student(course)
-            case 3 :
+            case 3 : 
                 print('Opción 3 seleccionada')
                 print('Para agregar un nuevo alumno, cargue todos los datos indicados a continuación')
                 new_student = create_student()

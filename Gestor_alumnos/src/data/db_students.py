@@ -1,15 +1,14 @@
 students_list: list[dict] = [
     #Agregar metodo para cargar mas cursos a la DB
-    {"1°1°": []},
-    {"1°2°": []},
-    {"2°": []},
-    {"3°": []},
-    {"4°": []},
-    {"5°": []},
-    {"6°": []},
+    {"1": []},
+    {"2": []},
+    {"3": []},
+    {"4": []},
+    {"5": []},
+    {"6": []},
+
 ]
 
-course_number = input('Elija un curso :')
 
 def check_db(course_number: str) -> list:
     for course_dict in students_list:
